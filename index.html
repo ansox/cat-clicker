@@ -1,111 +1,49 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>CatClicker</title>
 
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    
+    
   </head>
   <body>
-    <div id="cat-menu">
-      <ul id="cat-list">
+      <nav>
+        <div class="nav-wrapper orange darken-1">
+            <a href="#" class="brand-logo">CatClicker</a>                      
+        </div>
+      </nav>
+          
+      <div class="cat-menu">
+        <div id="cat-list" class="collection">
+        </div>
+      </div>
 
-      </ul>
-    </div>
+      <div class="row main-content">
+        <div class="col s12 m7">
+          <div class="card blue cyan darken-1">
+           
+            <div class="card-img white-text">
+                <span id="cat-name" class="card-title"></span> 
+                
+              <img id="cat-image" alt="cat">     
+            </div>  
 
-    <div class="main-content">
-        <h1 id="cat-name"></h1>
+            <div class="card-action white-text">
+              <span>Clicks: </span>
+              <span id="cat-counter"></span>                  
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <img id="cat-image" alt="cat">
-        
-        <h1>Clicks:</h1>
-        <h2 id="cat-counter">0</h2>
-    </div>
   </body>
 
-  <script>
-    catList = [
-      {
-        name: 'Gato 1',
-        image: 'assets/images/cat.jpg',
-        counter: 0
-      }, 
-
-      {
-        name: 'Gato 2',
-        image: 'assets/images/cat2.jpg',
-        counter: 0
-      },
-
-      {
-        name: 'Gato 3',
-        image: 'assets/images/cat3.jpg',
-        counter: 0
-      },
-
-      {
-        name: 'Gato 4',
-        image: 'assets/images/cat4.jpg',
-        counter: 0
-      },
-
-      {
-        name: 'Gato 5',
-        image: 'assets/images/cat5.jpg',
-        counter: 0
-      }
-    ];
-
-    var selected;
-
-    var onCounterClick = function() {
-      var catCounter = document.getElementById('cat-counter');
-
-      catCounter.innerText = ++selected.counter;
-    }
-
-    var catSelected = function(item) {
-      var catName = document.getElementById('cat-name');
-      var catImage = document.getElementById('cat-image');
-      var catCounter = document.getElementById('cat-counter');
-
-      catName.innerText = item.name;
-      catImage.setAttribute('src', item.image);
-      catCounter.innerText = item.counter;
-
-      selected = item;
-
-      catImage.removeEventListener('click', onCounterClick);
-
-      catImage.addEventListener('click', onCounterClick);
-    }
-
-    var getNodeItem = function(item, index) {
-      var node = document.createElement("LI");
-     
-      node.setAttribute('id', 'cat' + index);
-
-      var link = document.createElement('A');
-      link.setAttribute('href', '#');
-
-      var textNode = document.createTextNode(item.name);
-     
-      link.appendChild(textNode);
-
-      node.appendChild(link);
-
-      node.addEventListener('click', function() {
-        catSelected(item);
-      })
-
-      return node;
-    } 
-
-    var catListEl = document.getElementById('cat-list');
-    
-    for (var i = 0; i < catList.length; i++) {
-      catListEl.appendChild(getNodeItem(catList[i], i));
-    }
-
-    catSelected(catList[0]);
-
-  </script>
+  <script src="app.js"></script>
 </html>

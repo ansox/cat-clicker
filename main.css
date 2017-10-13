@@ -1,20 +1,23 @@
-#cat-menu {
-  border: 1px dashed blue;
-  /* display: inline-block; */
+.cat-menu {
+  /* border: 1px dashed blue; */
   position: absolute;
-  /* width: 20%; */
-  height: 30%;
+  /* top: 100px; */
+  width: 30%;
+  /* height: 100%; */
   margin-top: 0;
   margin-right: 20px;
 }
 
 .main-content {
-  border: 1px dashed red;
+  /* border: 1px dashed red; */
   position: absolute;
-  left: 150px;
-  widows: 70%;
+  /* top: 80px; */
+  left: 40%;
+  width: 600px;
+  /* widows: 70%; */
 }
 
 #cat-image {
-  height: 50%;
+  width: 100%;
+  /* max-height: 200px; */
 }
