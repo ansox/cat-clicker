@@ -43,6 +43,8 @@ var model = {
       model.init();
 
       viewContent.init();    
+
+      viewAdmin.init();
       
       octopus.setSelected(octopus.getCatList()[0]);
       
@@ -56,6 +58,7 @@ var model = {
     setSelected: function(cat) {
       this.selected = cat;
       viewContent.render();
+      viewAdmin.render();
     },
 
     getSelected: function() {
@@ -64,6 +67,18 @@ var model = {
 
     addClickCounter: function() {
       this.selected.counter++;
+      viewAdmin.render();
+    },
+
+    updateSelected: function(name, image, counter) {
+      var selected = octopus.getSelected();
+
+      selected.name = name;
+      selected.image = image;
+      selected.counter = counter;
+
+      viewContent.render();
+      viewMenu.render();
     }
   }
 
@@ -89,6 +104,8 @@ var viewMenu = {
 
       return link;
     }
+
+    this.catListEl.innerHTML = '';
 
     var list = octopus.getCatList();
 
@@ -118,6 +135,51 @@ var viewContent = {
     this.catName.innerText = item.name;
     this.catImage.setAttribute('src', item.image);
     this.catCounter.innerText = item.counter;
+  }
+}
+
+var viewAdmin = {
+  init: function() {
+    self = this;
+    this.hiddenAdmin = true;
+
+    this.btnAdmin = document.getElementById('btn-admin');
+    this.adminContent = document.getElementById('admin-content');
+    this.btnCancel = document.getElementById('btn-cancel')
+    this.btnSave = document.getElementById('btn-save');
+    this.name = document.getElementById('name');
+    this.image = document.getElementById('image');
+    this.counter = document.getElementById('counter');
+    
+    this.btnAdmin.addEventListener('click', function() {
+      self.hiddenAdmin = false;
+      viewAdmin.render();
+    });
+
+    this.btnCancel.addEventListener('click', function() {
+      self.hiddenAdmin = true;
+      viewAdmin.render();
+    });
+
+    this.btnSave.addEventListener('click', function() {
+      octopus.updateSelected(self.name.value, self.image.value, self.counter.value);
+    })
+  },
+
+  render: function() {
+    if (this.hiddenAdmin) {
+      this.adminContent.setAttribute('hidden', true);
+      
+    }
+    else {
+      this.adminContent.removeAttribute('hidden');
+    }
+
+    var selected = octopus.getSelected();
+
+    this.name.value = selected.name;
+    this.image.value = selected.image;
+    this.counter.value = selected.counter;  
   }
 }
 

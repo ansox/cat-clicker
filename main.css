@@ -9,10 +9,25 @@
 .main-content {
   /* border: 1px dashed red; */
   position: absolute;
-  left: 40%;
-  width: 600px;
+  left: 30%;
+  max-width: 410px;
+}
+
+.admin {
+  /* border: 1px dashed red; */
+  position: absolute;
+  left: 65%;
+  margin-top: 10px;
+  margin-right: 20px;
+  /* padding: 50px; */
 }
 
 #cat-image {
   width: 100%;
+}
+
+#admin-content {
+  /* position: relative; */
+  /* background: blue; */
+  /* padding: 10px; */
 }
